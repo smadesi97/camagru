@@ -1,0 +1,60 @@
+body{
+	margin: 10;
+	padding: 10;
+	font-family: sans-serif;
+	background-color: rgb(185, 240, 240);
+}
+.header{
+	background-color: rgb(105, 182, 182);
+	color: rgb(73, 88, 156);
+	text-align: center;
+	top: 1px;
+	width: 100%;
+	padding: 1px;
+}
+form{
+	width: 40%;
+	padding: 70px;
+	border: 1px solid rgba(96, 83, 151, 0.933);
+	margin: 200px auto;
+}
+.textInput{
+	margin-top: 2px;
+	height: 28px;
+	border: 1px solid rgb(42, 59, 95);
+	font-size: 20px;
+	padding: 1px;
+	width: 100%;
+}
+#error_msg{
+	width: 50%;
+	margin: 10px auto;
+	height: 30px;
+	border: 1px solid rgb(24, 111, 151);
+	background:rgb(64, 161, 168);
+	color: rgb(24, 111, 151);
+	text-align: center;
+	padding-top: 10px;
+}
+td{
+	text-align: right;
+}
+
+ .center{
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	transform: translateX(-50%) translateY(-50%);
+	text-align: center;
+ }
+body
+{
+	font: 14px sans-serif;
+	text-align: center;
+}
+.wrapper
+{
+	width: 430px;
+	padding: 30px;
+}
+
