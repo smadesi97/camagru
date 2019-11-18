@@ -57,4 +57,26 @@ body
 	width: 430px;
 	padding: 30px;
 }
+.gallery-image{
+	padding: 10px;
+	display: inline-block;
+}
 
+.gallery-image img{
+	padding: 2px;
+	margin: 2px;
+}
+
+.pagination ul li{
+	list-style: none;
+	padding:10px;
+	background: blue;
+	color:white;
+}
+#footer {
+   position:absolute;
+   bottom:0;
+   width:100%;
+   height:60px;   /* Height of the footer */
+   background:#6cf;
+}

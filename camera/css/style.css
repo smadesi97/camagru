@@ -34,4 +34,12 @@ body {
 .top-container {
 	width: 500px;
 	margin: 30px auto;
+	float: left;
+}
+.container {
+	width: 80%;
+	height: 700px;
+	margin: 0 auto;
+	text-align: center;
+	display: inline-block;
 }

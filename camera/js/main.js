@@ -6,11 +6,12 @@ let width = 500,
 
 //We also need DOM elements here
 const video = document.getElementById('video');
+const img = document.getElementById('img');
 const canvas = document.getElementById('canvas');
 const photos = document.getElementById('photos');
 const photoButton = document.getElementById('photo-button');
 const clearButton = document.getElementById('clear-button');
-const photoFilter = document.getElementById('photo-filter');
+const file_choose = document.getElementById('file_choose');
 
 //Here we wanna get the media streaming
 navigator.mediaDevices.getUserMedia({video: true, audio: false})
@@ -25,6 +26,14 @@ navigator.mediaDevices.getUserMedia({video: true, audio: false})
 .catch(function(err){
 	console.log('Error: ${err}');
 });
+
+// file_choose.addEventListener('change', (event)=>{
+// 	var reader = new FileReader;
+// 	reader.addEventListener('load', (event) => {
+// 		img.src = reader.result;
+// 	});
+// 	reader.readAsDataURL(file_choose.files[0]);
+// });
 //play when ready
 video.addEventListener('canplay',(event)=>{
 	if (!streaming)
@@ -47,46 +56,75 @@ video.addEventListener('canplay',(event)=>{
  	// photoButton.innerHTML = '';
 //  })
 
-photoButton.addEventListener('click', function(event){
+photoButton.addEventListener('click', function(event)
+{
 	takePicture();
 },false);
 
+
+// photoButton.addEventListener('click', function (event) {
+// 	placeEmoji();
+// }, false);
+
+//
+
+function placeEmoji(){
+//this function will place emoji on ccanvas
+	emoji = document.createElement('img');
+	emoji.setAttribute('src', "../img/images.jpeg");
+	emoji.setAttribute('src', "../img/png-transparent-images-1.png");
+	canvas.getContext('2d').drawImage(emoji, 50, 50, 100, 100);
+}
+
 count = 0;
+
 function takePicture(){
 	//create convas
-	++count;
-	var canvas = document.createElement('canvas');
-	var li = document.createElement('li');
-	li.setAttribute('class', 'nav-item');
-	canvas.id = 'pic'+count;
-	canvas = styleCanvas(canvas);
-	li.appendChild(canvas);
-	if (photos.firstChild)
-	{
-		photos.insertBefore(li, photos.firstChild);
-	}
-	else
-	{
-		photos.appendChild(li);
-	}
+	//++count;
+	// var canvas = document.createElement('canvas');
+	// var li = document.createElement('li');
+	// li.setAttribute('class', 'nav-item');
+	// canvas.id = 'pic'+count;
+	// canvas = styleCanvas(canvas);
+	// li.appendChild(canvas);
+	// if (photos.firstChild)
+	// {
+	// 	photos.insertBefore(li, photos.firstChild);
+	// }
+	// else
+	// {
+	// 	photos.appendChild(li);
+	// }
 	const contex = canvas.getContext('2d');
-	 if (width && height){
+	// if (width && height){
 		//set canvas props
 		 canvas.width = width;
 		 canvas.style.height = height;
 		//draw image of the video on the canvas
-		 contex.drawImage(video, 0, 0, width, height);
+
+		//is drawing image FROM the video stream to the canvas
+		contex.drawImage(video, 0, 0, width, height);
+
+		///this is drawing FROM your own picture of choice, to canvas
+
+
+
 		 //0, 0 is where we start drawing on the x & y axist.
-		 contex.drawImage(img, 0, 0, width, height);
-	 }
+		//  if (img)
+		//  	contex.drawImage(img, 0, 0, width, height);
+		//  image2 = new Image();
+		//  image2.src = "../img/s1.png";
+		//  contex.drawImage(image2, 0, 0);
+
+	// }
 }
-function styleCanvas(canvas) {
-	canvas.width = 300;
-	canvas.height = 300;
-	canvas.style.display = 'inline-block';
-	canvas.style.borderRight = '1px solid #f5f7f6';
-	canvas.style.cssFloat = 'right';
-	canvas.style.boxShadow = '0px 9px 8px 0px darkgrey';
-	canvas.style.marginBottom = '10px';
-	return canvas;
-}
+// function styleCanvas(canvas) {
+// 	canvas.width = 300;
+// 	canvas.height = 300;
+// 	canvas.style.display = 'inline-block';
+// 	canvas.style.borderRight = '1px solid #f5f7f6';
+// 	canvas.style.cssFloat = 'right';
+// 	canvas.style.boxShadow = '0px 9px 8px 0px darkgrey';
+// 	canvas.style.marginBottom = '10px';
+// 	return canvas;
+// }

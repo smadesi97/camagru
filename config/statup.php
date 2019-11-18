@@ -11,7 +11,7 @@ try {
         $sql = "CREATE DATABASE IF NOT EXISTS `".$DB."`";
         //excecute sql
         $dbh->exec($sql);
-        echo "Database was created successfully\n";
+        // echo "Database was created successfully\n";
     } catch (PDOException $e) {
         echo "<br>" . $e->getMessage()."<br>";
     }
@@ -30,7 +30,7 @@ try {
         email varchar(100) not null
     )";
     $dbh->exec($sql);
-    echo "<br>User table created successfully\n";
+    // echo "<br>User table created successfully\n";
 } catch (PDOException $e) {
     echo "<br>" . $e->getMessage()."<br>";
 }
@@ -48,7 +48,7 @@ try {
     )";
     //Cascade on delete: this is when deleting a user with his/her pictures
     $dbh->exec($sql);
-    echo "<br>Image table created successfully\n";
+    // echo "<br>Image table created successfully\n";
 } catch (PDOException $e) {
     echo "<br>" . $e->getMessage()."<br>";
 }
@@ -62,12 +62,13 @@ try {
         userid int not null,
         imageid int not null,
         `text` varchar(100) not null,
+        `date` int not null,
         foreign key(userid) references user(id) on delete cascade,
         foreign key(imageid) references image(id) on delete cascade
     )";
     //Cascade on delete: this is when deleting a user with his/her pictures
     $dbh->exec($sql);
-    echo "<br>Comment table created successfully\n";
+    // echo "<br>Comment table created successfully\n";
 } catch (PDOException $e) {
     echo "<br>" . $e->getMessage()."<br>";
 }
@@ -85,7 +86,7 @@ try {
     )";
     //Cascade on delete: this is when deleting a user with his/her pictures
     $dbh->exec($sql);
-    echo "<br>Likes table created successfully\n";
+    // echo "<br>Likes table created successfully\n";
 } catch (PDOException $e) {
     echo "<br>" . $e->getMessage()."<br>";
 }
