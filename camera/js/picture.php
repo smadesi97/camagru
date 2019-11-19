@@ -18,14 +18,20 @@
 		<button id="photo-button">Take photo</button>
 		<button select="clear-button">Clear</button>
 		<button id="emojis" name="emojis" onclick="placeEmoji()">Emojis</button>
-		<button id="save">SAVE</button>
+		<button id="save">Save</button>
 
 		<canvas id="canvas"></canvas>
 		<div class="right-container">
 			<ul id="photos">
 			</ul>
 		</div>
+		<div>
+			<img src="../img/images.jpeg" alt="emoji1" height="42" width="42" onclick="placeEmoji(1)">
+			<img src="../img/png-transparent-images-1.png" alt="emoji2" height="42" width="42" onclick="placeEmoji(2)">
+			<img src="../img/st,small,215x235-pad,210x230,f8f8f8.u3.jpg" alt="emoji3" height="42" width="42" onclick="placeEmoji(3)">
+		</div>
 	</div>
 	<script src="main.js"></script>
 </body>
+
 </html>

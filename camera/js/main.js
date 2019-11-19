@@ -68,11 +68,23 @@ photoButton.addEventListener('click', function(event)
 
 //
 
-function placeEmoji(){
+function placeEmoji(emoj){
 //this function will place emoji on ccanvas
 	emoji = document.createElement('img');
-	emoji.setAttribute('src', "../img/images.jpeg");
-	emoji.setAttribute('src', "../img/png-transparent-images-1.png");
+	if (emoj == 1)
+	{
+		canvas.getContext('2d').clearRect(50, 50, 100, 100);
+		emoji.setAttribute('src', "../img/images.jpeg");
+	}
+	else if (emoj == 2)
+	{
+		canvas.getContext('2d').clearRect(50, 50, 100, 100);
+		emoji.setAttribute('src', "../img/png-transparent-images-1.png");
+	}else
+	{
+		canvas.getContext('2d').clearRect(50, 50, 100, 100);
+		emoji.setAttribute('src', "../img/st,small,215x235-pad,210x230,f8f8f8.u3.jpg");
+	}
 	canvas.getContext('2d').drawImage(emoji, 50, 50, 100, 100);
 }
 
