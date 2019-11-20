@@ -21,6 +21,7 @@ try{
 }
 catch (PDOException $e)
 {
+    
     echo $sqlInsert.'<br>'.$e->getMessage();
     echo "update failed";
 }
