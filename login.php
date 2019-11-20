@@ -10,7 +10,7 @@ include("views/includes/nav.php");
 	<div class="w3-display-middle">
 		<h2>Login</h2>
 		<p>Please fill in your credentials to login.</p>
-		<form action="../scripts/login_script.php" method="post" class="w3-container">
+		<form action="scripts/login_script.php" method="post" class="w3-container">
 			<div class="form-group">
 				<label class="w3-text-blue"><b>Username</b></label>
 				<input type="text" name="username" class="w3-input w3-border" value="">
@@ -33,5 +33,9 @@ include("views/includes/nav.php");
 		</form>
 	</div>
 </div>
+<?php
+include("views/includes/footer.php");
+?>
 </body>
+
 </html>

@@ -12,7 +12,8 @@
 	or die($mysqli->connect_error);
 	$table = 'image';
 	$results = $mysqli->query("SELECT * FROM $table") or die($mysqli->error);
-	while ($data = $result->fetch_assoc()){
+	while ($data = $result->fetch_assoc())
+	{
 		echo "<img src='{$data['imagepath']}' width = '40%' height = '40%'>";
 	}
 	?>

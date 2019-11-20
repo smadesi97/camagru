@@ -26,6 +26,8 @@
 				if ($statement->rowCount())
 				{
 					echo "<br/>Account is verified";
+				header("Location: ../login.php");
+				exit;
 				}
 				else
 				{

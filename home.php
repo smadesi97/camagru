@@ -13,7 +13,6 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
 	//exit;
 }
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -50,7 +49,6 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
 		<?php
 
 		try {
-
 			$limit = 5;
 			$sql1 = "SELECT * FROM `image`";
 			$pagination = $dbh->prepare($sql1);
@@ -90,8 +88,8 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
 				<li style="color:white; background:blue; padding:10px; font-size:14px"><a href='<?php echo "?page=$page"; ?>' class="links"><?php echo $page; ?> </a></li>
 			</ul>
 		<?php endfor;
-		echo '<br/><br/><br/>'; ?>
-
+		echo '<br/><br/><br/>';
+		?>
 	</div>
 	<!-- <p> -->
 	<!-- <a href="reset_pswrd.php" class="btn btn-warning">Reset Your Password</a> -->
