@@ -50,9 +50,13 @@ if ($uploadOk == 0) {
 	<meta http-equiv="X-UA-Compatible" content="ie=edge" />
 	<title>Webcam</title>
 	<link rel="stylesheet" href="css/style.css" />
+	<link rel="stylesheet" type="text/css" href="../css/w3.css">
 </head>
 
 <body>
+	<?php
+	include("nav.php");
+	?>
 	<div class="navbar">
 		<h1>Camsnapper</h1>
 	</div>

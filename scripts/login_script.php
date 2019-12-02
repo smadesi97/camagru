@@ -4,7 +4,7 @@ include('login.php');
 session_start();
 // Check if the user is already logged in, if yes then redirect him to welcome page
 if (isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true) {
-	header("location: home.php");
+	header("location: index.php");
 	exit;
 }
 // Include config file
@@ -59,7 +59,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 							$_SESSION["username"] = $username;
 							$_SESSION["email"] = $email;
 							// Redirect user to welcome page
-							header("location: ../home.php");
+							header("location: ../index.php");
 						}
 						else
 						{

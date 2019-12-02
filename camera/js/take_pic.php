@@ -7,12 +7,19 @@
 	<meta http-equiv="X-UA-Compatible" content="ie=edge" />
 	<title>Webcam</title>
 	<link rel="stylesheet" href="../../css/style.css" />
+	<link rel="stylesheet" type="text/css" href="../../css/w3.css">
 </head>
 
 <body>
+	<?php
+	session_start();
+	include("../nav.php");
+	?>
+	<br><br>
 	<div class="navbar">
 		<h1>Camsnapper</h1>
 	</div>
+
 	<div class="top-container">
 		<video id="video">Stream not available...</video>
 		<button id="photo-button">Take photo</button>
@@ -20,6 +27,7 @@
 		<button id="emojis" name="emojis" onclick="placeEmoji()">Emojis</button>
 		<button id="save">Save</button>
 
+		
 		<canvas id="canvas"></canvas>
 		<div class="right-container">
 			<ul id="photos">

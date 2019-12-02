@@ -1,4 +1,5 @@
 <?php
+session_start();
 include_once 'config/database.php';
 include_once 'config/statup.php';
 
@@ -21,7 +22,7 @@ try{
 }
 catch (PDOException $e)
 {
-    
+
     echo $sqlInsert.'<br>'.$e->getMessage();
     echo "update failed";
 }
