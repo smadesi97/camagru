@@ -27,6 +27,7 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
 	<?php
 	include("views/includes/nav.php");
 	?>
+	<!--git test-->
 	<!-- This is my navigation ending -->
 
 	<?php
