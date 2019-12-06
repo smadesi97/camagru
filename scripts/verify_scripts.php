@@ -26,8 +26,8 @@
 				if ($statement->rowCount())
 				{
 					echo "<br/>Account is verified";
-				header("Location: ../login.php");
-				exit;
+					header("Location: ../login.php");
+					exit;
 				}
 				else
 				{
@@ -39,7 +39,8 @@
 				echo "<br/>Account not found";
 			}
 		}
-		catch(PDOException $e){
+		catch(PDOException $e)
+		{
 			echo "<br/>Error " . $e->getMessage();
 		}
 	}

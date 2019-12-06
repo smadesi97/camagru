@@ -31,17 +31,17 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
 	<!-- This is my navigation ending -->
 
 	<?php
-	if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
-		echo "<p>
- 		<a href='signup.php' class='btn btn-warning'>signup</a>
- 		<a href='login.php' class='btn btn-danger'>login</a>
- 	</p>";
-	} else {
-		echo "<p>
- 		<a href='reset_pswrd.php' class='btn btn-warning'>Reset Your Password</a>
- 		<a href='views/logout.php' class='btn btn-danger'>Sign Out of Your Account</a>
- 	</p>";
-	}
+	// if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
+	// 	echo "<p>
+ 	// 	<a href='signup.php' class='btn btn-warning'>signup</a>
+ 	// 	<a href='login.php' class='btn btn-danger'>login</a>
+ 	// </p>";
+	// } else {
+	// 	echo "<p>
+ 	// 	<a href='reset_pswrd.php' class='btn btn-warning'>Reset Your Password</a>
+ 	// 	<a href='views/logout.php' class='btn btn-danger'>Sign Out of Your Account</a>
+ 	// </p>";
+	// }
 	?>
 
 	<div class="w3-container">

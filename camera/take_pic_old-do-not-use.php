@@ -80,5 +80,17 @@ if ($uploadOk == 0) {
 			</form>
 		</div>
 	</div>
+
+
+
+
+	<hr>
+	<hr>
+	<hr>
+	<form action="" method="POST" enctype="multipart/form-data">
+		select image to upload:
+		<input type="file" name="fileToUpload" id="fileToUpload">
+		<input type="submit" value="upload Image" name="submit">
+	</form>
 	<script src="js/main.js"></script>
 </body>

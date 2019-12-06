@@ -13,6 +13,7 @@
 			echo '<div class="w3-top">
 		<div class="w3-bar w3-red">
 		<a href="../../index.php" class="w3-bar-item w3-button">Home</a>
+		<a href="../../profile.php" class="w3-bar-item w3-button">Profile</a>
 		<a href="../../views/logout.php" class="w3-bar-item w3-button">Logout</a>
 	</div>
 	</div>';
