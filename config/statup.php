@@ -42,7 +42,7 @@ try {
     $sql = "CREATE TABLE IF NOT EXISTS `image`(
         id int not null primary KEY AUTO_INCREMENT,
         source varchar(255) not null,
-        creationdate timestamp not null,
+        creationdate timestamp DEFAULT CURRENT_TIMESTAMP,
         userid int not null,
         foreign key(userid) references user(id) on delete cascade
     )";

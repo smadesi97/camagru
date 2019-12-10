@@ -1,7 +1,7 @@
 <?php
 // Initialize the session
 session_start();
-include("config/database.php");
+include_once "config/statup.php";
 
 // Check if the user is logged in, if not then redirect him to login page
 if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
@@ -41,7 +41,6 @@ include("views/includes/nav.php");
 // </p>";
 // }
 ?>
-
 <div class="row">
 	<div class="w3-container">
 		<div class="w3-display-middle">
@@ -93,7 +92,6 @@ include("views/includes/nav.php");
 			</div>
 		</div>
 	</div>
-
 </div>
 <!-- <p> -->
 <!-- <a href="reset_pswrd.php" class="btn btn-warning">Reset Your Password</a> -->
@@ -103,5 +101,4 @@ include("views/includes/nav.php");
 include("views/includes/footer.php");
 ?>
 </body>
-
 </html>

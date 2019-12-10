@@ -7,6 +7,6 @@ require_once("home.html");
 		$img = str_replace("data:image/png;base64,", "", $img);
 		$img = base64_decode($img);
 		$img = imagecreatefromstring($img);
-		imagepng($img, img);
+		imagepng($img, $img);
 	}
 ?>

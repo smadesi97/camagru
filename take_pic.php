@@ -13,7 +13,7 @@
 <body>
 	<?php
 	session_start();
-	include("../nav.php");
+	include("views/includes/nav.php");
 	?>
 	<br><br>
 	<div class="navbar">
@@ -24,9 +24,8 @@
 		<video id="video">Stream not available...</video>
 		<button id="photo-button">Take photo</button>
 		<button select="clear-button">Clear</button>
-		<button id="emojis" name="emojis" onclick="placeEmoji()">Emojis</button>
-		<button id="save" name="submit" formaction="../views/includes/upload.php">Save</button>
-
+		<!-- <button id="emojis" name="emojis" onclick="placeEmoji(1,2,3)">Emojis</button> -->
+		<button id="save" type="button" name="submit" formaction="views/includes/upload.php">Save</button>
 
 		<canvas id="canvas"></canvas>
 		<div class="right-container">
@@ -34,13 +33,19 @@
 			</ul>
 		</div>
 		<div>
-			<img src="camera/img/images.jpeg" alt="emoji1" height="42" width="42" onclick="placeEmoji(1)">
-			<img src="camera/img/png-transparent-images-1.png" alt="emoji2" height="42" width="42" onclick="placeEmoji(2)">
-			<img src="camera/img/st,small,215x235-pad,210x230,f8f8f8.u3.jpg" alt="emoji3" height="42" width="42" onclick="placeEmoji(3)">
+			<img src="camera/img/sticker1.png" alt="emoji1" height="42" width="42" onclick="placeEmoji(1)">
+			<img src="camera/img/sticker2.png" alt="emoji2" height="42" width="42" onclick="placeEmoji(2)">
+			<img src="camera/img/sticker3.png" alt="emoji3" height="42" width="42" onclick="placeEmoji(3)">
+			<img src="camera/img/sticker4.png" alt="emoji3" height="42" width="42" onclick="placeEmoji(4)">
+			<input type="hidden" id="stickerName">
 		</div>
 	</div>
 	<script src="camera/js/main.js"></script>
 
+	<!-- upload trial one -->
+	<!-- <script>
+		var $our_image = canvas.toDataURL("image/png");
+	</script> -->
 
 	<form action="uploadpicture.php" method="POST" enctype="multipart/form-data">
 		select image to upload:

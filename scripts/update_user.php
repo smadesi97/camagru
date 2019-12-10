@@ -3,7 +3,7 @@ session_start();
 //print_r($_POST);
 //print_r($_SESSION);
 
-include_once '../config/database.php';
+include_once "../config/statup.php";
 //get users ID for SQL WHERE clause
 
 if (isset($_POST['usernamebtn'])) {

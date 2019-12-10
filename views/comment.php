@@ -1,6 +1,5 @@
 <?php
 session_start();
-include_once 'config/database.php';
 include_once 'config/statup.php';
 
 try{

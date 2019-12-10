@@ -4,16 +4,17 @@
 ////////
 //put this in its own php file
 
+// var_dump($_FILES);
+// exit();
 
 // include '../../config/database.php';
 // session_start();
-// // var_dump($_FILES);
-// // exit();
-// // $con = mysqli_connect("localhost", "root", "123456", "camagrudb");
-// // // Check connection
-// // if (mysqli_connect_errno()) {
-// // 	echo "Failed to connect to MySQL: " . mysqli_connect_error();
-// // }
+
+// $con = mysqli_connect("localhost", "root", "123456", "camagrudb");
+// // Check connection
+// if (mysqli_connect_errno()) {
+// 	echo "Failed to connect to MySQL: " . mysqli_connect_error();
+// }
 
 // // mysqli_query($con, "INSERT INTO image (source)
 // // VALUES ('uploads/png-transparent-images-1.png')");
@@ -62,22 +63,22 @@
 // 		$imag = basename($_FILES["fileToUpload"]["name"]);
 
 
-// 		try {
-// 			$userid = $_SESSION['id'];
-// 			$imgpath = $imag;
-// 				//$date = date('Y-m-d H:i:s');
+		try {
+			$userid = $_SESSION['id'];
+			$imgpath = $imag;
+				//$date = date('Y-m-d H:i:s');
 
-// 				$sqlInsert = "INSERT INTO image (`imagepath`, `userid`) VALUES (?,?)";
-// 				$stmt = $dbh->prepare($sqlInsert);
-// 				$stmt->bindParam(1, $imgpath);
-// 				$stmt->bindParam(2, $userid);
-// 				$stmt->execute();
-// 				//$result = "<p style='padding: 20px; color: green;'> Comment successful </p>";
-// 				//echo"random";
-// 		} catch (PDOException $e) {
-// 			echo $sqlInsert . '<br>' . $e->getMessage();
-// 			echo "update failed";
-// 		}
+				$sqlInsert = "INSERT INTO image (`imagepath`, `userid`) VALUES (?,?)";
+				$stmt = $dbh->prepare($sqlInsert);
+				$stmt->bindParam(1, $imgpath);
+				$stmt->bindParam(2, $userid);
+				$stmt->execute();
+				//$result = "<p style='padding: 20px; color: green;'> Comment successful </p>";
+				//echo"random";
+		} catch (PDOException $e) {
+			echo $sqlInsert . '<br>' . $e->getMessage();
+			echo "update failed";
+		}
 // 	}
 // }
 
