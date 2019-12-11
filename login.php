@@ -30,6 +30,7 @@ include("views/includes/nav.php");
 				<input type="checkbox" checked="checked" name="remember"> Remember me
 			</label>
 			<p>Don't have an account? <a href="signup.php">Sign up now</a>.</p>
+			<a href="forgot_password.php">Forgot your password?</a>
 		</form>
 	</div>
 </div>

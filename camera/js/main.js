@@ -11,10 +11,11 @@ const canvas = document.getElementById('canvas');
 const photos = document.getElementById('photos');
 const photoButton = document.getElementById('photo-button');
 const clearButton = document.getElementById('clear-button');
-const file_choose = document.getElementById('file_choose');
+const file_choose = document.getElementById('fileToUpload');
 const save = document.getElementById('save');
 const hidden = document.getElementById('stickerName');
-
+const taken = document.getElementById('taken');
+const img_upload = document.getElementById('imgUpload');
 //Here we wanna get the media streaming
 navigator.mediaDevices.getUserMedia({video: true, audio: false})
 //We want the camera to do this
@@ -102,22 +103,7 @@ function placeEmoji(emoj){
 }
 count = 0;
 function takePicture(){
-	//create convas
-	//++count;
-	// var canvas = document.createElement('canvas');
-	// var li = document.createElement('li');
-	// li.setAttribute('class', 'nav-item');
-	// canvas.id = 'pic'+count;
-	// canvas = styleCanvas(canvas);
-	// li.appendChild(canvas);
-	// if (photos.firstChild)
-	// {
-	// 	photos.insertBefore(li, photos.firstChild);
-	// }
-	// else
-	// {
-	// 	photos.appendChild(li);
-	// }
+
 	const contex = canvas.getContext('2d');
 	// if (width && height){
 		//set canvas props
@@ -127,7 +113,7 @@ function takePicture(){
 
 		//is drawing image FROM the video stream to the canvas
 		contex.drawImage(video, 0, 0, width, height);
-
+		taken.value = 'true';
 		///this is drawing FROM your own picture of choice, to canvas
 
 		 //0, 0 is where we start drawing on the x & y axist.
@@ -144,11 +130,14 @@ save.addEventListener('click', function(event)
 	// We take image name from image tag
 	var stickerName = hidden.value
 	var http = new XMLHttpRequest();
-	var param = "image_name=" + canvas.toDataURL('image/png')+"&sticker_name="+stickerName;
+	var param = "image_name=" + canvas.toDataURL('image/png')+"&sticker_name="+stickerName +"&taken="+taken.value;
 	http.onreadystatechange = function () {
 		if (http.readyState === 4) {
 			if (http.status === 200) {
-				alert(http.responseText);
+				if (taken.value == 'true')
+					displayImage(http.responseText);
+				taken.value = 'false';
+				hidden.value = "";
 			}
 		}
 	};
@@ -156,13 +145,39 @@ save.addEventListener('click', function(event)
 	http.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 	http.send(param);
 }, false);
-// function styleCanvas(canvas) {
-// 	canvas.width = 300;
-// 	canvas.height = 300;
-// 	canvas.style.display = 'inline-block';
-// 	canvas.style.borderRight = '1px solid #f5f7f6';
-// 	canvas.style.cssFloat = 'right';
-// 	canvas.style.boxShadow = '0px 9px 8px 0px darkgrey';
-// 	canvas.style.marginBottom = '10px';
-// 	return canvas;
-// }
+function displayImage(image_name)
+{
+	++count;
+	var img = document.createElement('img');
+	var li = document.createElement('li');
+	li.setAttribute('class', 'nav-item');
+	img.id = 'pic' + count;
+	img.setAttribute('src', "views/includes/uploads/"+image_name);
+	img.setAttribute('class', "user-images");
+	li.appendChild(img);
+	if (photos.firstChild) {
+		photos.insertBefore(li, photos.firstChild);
+	}
+	else {
+		photos.appendChild(li);
+	}
+}
+
+file_choose.addEventListener('change', (event) => {
+	var reader = new FileReader;
+	reader.addEventListener('load', (event) => {
+		img_upload.src = reader.result;
+	});
+	reader.readAsDataURL(file_choose.files[0]);
+	const contex = canvas.getContext('2d');
+	// if (width && height){
+	//set canvas props
+	canvas.width = width;
+	canvas.style.height = height;
+	//draw image of the video on the canvas
+
+	//is drawing image FROM the video stream to the canvas
+	contex.drawImage(img_upload, 0, 0, width, height);
+	taken.value = 'true';
+});
+

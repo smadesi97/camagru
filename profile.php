@@ -79,16 +79,16 @@ include("views/includes/nav.php");
 						<br>
 						<span class="help-block"></span>
 					</div>
-				</form>
-				<form action="scripts/update_user.php" method="post" class="w3-container">
 					<div class="form-group">
 						<input type="submit" class="w3-btn w3-blue" name="passwordbtn" value="Update password">
 					</div>
+				</form>
+				<!-- <form action="scripts/update_user.php" method="post" class="w3-container">
 					<br>
 					<label>
 						<input type="checkbox" checked="checked" name="notifications"> Notifications
 					</label>
-				</form>
+				</form> -->
 			</div>
 		</div>
 	</div>

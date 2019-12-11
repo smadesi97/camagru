@@ -16,7 +16,7 @@
 		else{
 			try{
 				// To hide the user's password
-				$hashed_passwd = hash('md5', $password, FALSE);
+				$hashed_passwd = password_hash($password, PASSWORD_DEFAULT);
 				$code = hash('md5', rand(10,100000), FALSE);
 
 				$sql = "INSERT INTO user (username, email, `password`, veri_code) VALUES (?, ?, ?, ?)";

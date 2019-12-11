@@ -2,12 +2,14 @@
 include "../config/statup.php";
 	session_start();
 	// This the function that saves the picture to a folder
-	$base_string = str_replace("data:image/png;base64,", "", $_POST['image_name']);
-	$base_string = str_replace(" ", "+", $base_string);
-	$decoded = base64_decode($base_string);
-	$name = $_SESSION['username'].time() . '.png';
-	file_put_contents('../views/includes/uploads/' . $name, $decoded);
-
+	if (isset($_POST['taken']) && $_POST['taken'] == 'true')
+	{
+		$base_string = str_replace("data:image/png;base64,", "", $_POST['image_name']);
+		$base_string = str_replace(" ", "+", $base_string);
+		$decoded = base64_decode($base_string);
+		$name = $_SESSION['username'].time() . '.png';
+		file_put_contents('../views/includes/uploads/' . $name, $decoded);
+	}
 	// This is the function that combines a sticker to the picture
 	function combine($source, $destination, $sticker)
 	{
@@ -30,7 +32,7 @@ include "../config/statup.php";
 		$stmt->bindParam(1, $source);
 		$stmt->bindParam(2, $userid);
 		$stmt->execute();
-		echo "success";
+		echo $name;
 	} catch (PDOException $e) {
 
 		echo $sqlUpdate . '<br>' . $e->getMessage();

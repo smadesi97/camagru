@@ -24,14 +24,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 	if (empty(trim($_POST["password"]))) {
 		$password_err = "Please enter your password.";
 	} else {
-		$password = hash('md5',trim($_POST["password"]), false);
+		$password = $_POST['password'];
 	}
 	// Validate credentials
 	if (empty($username_err) && empty($password_err))
 	{
 		try{
 		// Prepare a select statement
-		$sql = "SELECT id, username, password FROM user WHERE username = :username";
+		$sql = "SELECT id, username, `password` FROM user WHERE username = :username";
 
 		if ($stmt = $dbh->prepare($sql)) {
 			// Bind variables to the prepared statement as parameters
@@ -50,7 +50,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 						$username = $row["username"];
 						$email = $row["email"];
 						$hashed_password = $row["password"];
-						if($password == $hashed_password) {
+						if(password_verify($password, $hashed_password)) {
 							// Password is correct, so start a new session
 							session_start();
 							// Store data in session variables

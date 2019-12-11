@@ -67,7 +67,7 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
 			}
 			$starting_limit = ($page - 1) * $limit;
 
-			$sql = "SELECT * FROM image ORDER BY creationdate DESC LIMIT $starting_limit, $limit";
+			$sql = "SELECT * FROM `image` ORDER BY creationdate DESC LIMIT $starting_limit, $limit";
 			$s = $dbh->prepare($sql);
 			$s->execute();
 			if ($s == false) {
@@ -76,10 +76,8 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
 				foreach ($s as $data) {
 					//echo '<div class="w3-container">';
 					//echo '<div class="w3-card-4">';
-					echo '<img class="w3-border w3-padding" style="padding:10px;" src="views/includes/uploads/' . $data["imagepath"] . '" width="300px" height="300px"/>';
-					echo '<button type="submit" name="like" value="' . $data["imageid"] . '">Like</button>';
-					//echo '</div>';
-					//echo '</div>';
+					echo '<img class="w3-border w3-padding" style="padding:10px;" src="views/includes/uploads/'. $data["source"] . '" width="300px" height="300px"/>';
+					echo '<button type="submit" name="like" value="' . $data["userid"] . '">Like</button>';
 				}
 			}
 		} catch (PDOException $e) {

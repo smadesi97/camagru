@@ -52,23 +52,25 @@ if (isset($_POST['usernamebtn'])) {
 		$userid = htmlEntities($_SESSION['id']);
 		if ($password == $password2)
 		{
-			$hashed_passwd = hash('md5', $password, FALSE);
+			$hashed_passwd = password_hash($password, PASSWORD_DEFAULT);
 			try
 			{
 				$sqlUpdate = "UPDATE user SET `password` = ? WHERE id = ?";
 				$store = $dbh->prepare($sqlUpdate);
 				$store->bindParam(1, $password);
-				$store->bindParam(2, $password2);
-				$store->bindParam(3, $userid);
+				$store->bindParam(2, $userid);
 				$store->execute();
-				header("location: ../views/logout.php");
-				header("location: ../login.php");
+				header("location: ../index.php");
 			}
 			catch (PDOException $e)
 			{
 				echo $sqlUpdate . '<br>' . $e->getMessage();
 				echo "Update failed";
 			}
+		}
+		else
+		{
+			header("Location: ../profile.php?error=passdiff");
 		}
 	}
 ?>
