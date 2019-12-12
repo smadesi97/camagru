@@ -3,6 +3,7 @@ body{
 	padding: 10;
 	font-family: sans-serif;
 	background-color: rgb(185, 240, 240);
+
 }
 .header{
 	background-color: rgb(105, 182, 182);
@@ -90,8 +91,9 @@ body
 	margin-right: 10px;
 }
 .top-container {
-	width: 50%;
-	margin: 30px auto;
+	width: 50vw;
+	/* height: 100vh; */
+	margin: 0 auto;
 	float: left;
 }
 .container {

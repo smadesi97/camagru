@@ -1,5 +1,5 @@
 <?php
-	include_once "../config/statup.php";
+	include_once "../config/setup.php";
 	if (isset($_POST["signup"])){
 		// create a variables and assign from _POST.
 		$username = $_POST["username"];

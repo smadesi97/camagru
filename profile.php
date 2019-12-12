@@ -1,7 +1,7 @@
 <?php
 // Initialize the session
 session_start();
-include_once "config/statup.php";
+include_once "config/setup.php";
 
 // Check if the user is logged in, if not then redirect him to login page
 if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
@@ -13,21 +13,11 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
 	//exit;
 }
 ?>
-<!-- <!DOCTYPE html>
-<html lang="en">
-
-<head>
-	<meta charset="UTF-8">
-	<title>Welcome</title>
-	<link rel="stylesheet" type="text/css" href="css/w3.css">
-</head> -->
+<!-- This is my navigation bar -->
 <?php
 include("views/includes/nav.php");
 ?>
 <!-- This is my navigation bar -->
-<!--git test-->
-<!-- This is my navigation ending -->
-
 <?php
 // if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
 // 	echo "<p>

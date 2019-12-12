@@ -1,5 +1,5 @@
 <?php
-	include "../config/statup.php";
+	include "../config/setup.php";
 	if (isset($_GET['email']) && isset($_GET['code'])){
 		$email = $_GET['email'];
 		$code = $_GET['code'];

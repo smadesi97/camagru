@@ -1,12 +1,23 @@
 <?php
-session_start();
-$connect = mysql_connect("localhost", "root", "123456", "likes");
-$query = "SELECT userid, imageid FROM likes";
-// here we execute the query and store results in results function
-$results = mysql_query($connect, $query);
+include "../config/setup.php";
+	// var_dump($_POST);
+	session_start();
+	echo "okay";
+	if (isset($_POST['imageid'])){
 
-while ($row = mysql_fetch_array($results))
-{
-    
+		$imageid = $_POST['imageid'];
+		$userid = htmlEntities($_SESSION['id']);
+//		exit();
+
+	try {
+		$sqlUpdate = "INSERT INTO `likes` (userid, imageid) VALUES (?, ?)";
+		$stmt = $dbh->prepare($sqlUpdate);
+		$stmt->bindParam(1, intval($userid));
+		$stmt->bindParam(2, intval($imageid));
+		$stmt->execute();
+	} catch (PDOException $e) {
+
+		echo $sqlUpdate . '<br>' . $e->getMessage();
+	}
 }
 ?>

@@ -4,7 +4,7 @@ session_start();
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
-include_once "config/statup.php";
+include_once "config/setup.php";
 
 // Check if the user is logged in, if not then redirect him to login page
 if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
@@ -23,6 +23,7 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
 	<meta charset="UTF-8">
 	<title>Welcome</title>
 	<link rel="stylesheet" type="text/css" href="css/w3.css">
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
 </head>
 
 <body>
@@ -53,6 +54,7 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
 									?></b> Welcome to Camagru!</h1>
 		<?php
 
+
 		try {
 			$limit = 5;
 			$sql1 = "SELECT * FROM `image`";
@@ -75,9 +77,14 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
 			} else {
 				foreach ($s as $data) {
 					//echo '<div class="w3-container">';
-					//echo '<div class="w3-card-4">';
-					echo '<img class="w3-border w3-padding" style="padding:10px;" src="views/includes/uploads/'. $data["source"] . '" width="300px" height="300px"/>';
-					echo '<button type="submit" name="like" value="' . $data["userid"] . '">Like</button>';
+					echo '<div class="w3-card-4">';
+					echo '<img class="w3-border w3-padding" style="padding:10px;" src="views/includes/uploads/' . $data["source"] . '" width="300px" height="300px"/>';
+					echo '<form action="views/like.php" method="POST">
+						<input type="hidden" name="imageid" value="'. $data['id'] . '"/>
+						<input type="submit" name="like" value="like"/>
+					</form>';
+					//echo '<button  data-loggedin ="' . $_SESSION["username"] . '" data-img_id ="' . $data["id"] . '" onClick="likes(this)" type="submit" name="like" value="' . $data["userid"] . ' ">Like</button>';
+					echo '</div>';
 				}
 			}
 		} catch (PDOException $e) {
@@ -103,18 +110,18 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
 	include("views/includes/footer.php");
 	?>
 </body>
+<script src="camera/js/likes.js"></script>
 
 </html>
-
 <?php
 if ($_SERVER['REQUEST_METHOD'] == "POST") {
-if (isset($_POST["like"]))
-{
-	$imageid = htmlEntities($_POST['like']);
-	$userid = htmlEntities($_SESSION['id']);
+	if (isset($_POST["like"])) {
+		// We use the htmlEntities to convert all applicable characters to html entities
+		$imageid = htmlEntities($_POST['like']);
+		$userid = htmlEntities($_SESSION['id']);
 
 		try {
-			require ("config/database.php");
+			require("config/database.php");
 			$sql = "INSERT INTO likes (userid, imageid) VALUES (?, ?)";
 			$statement = $dbh->prepare($sql);
 			$statement->bindParam(1, $userid);
@@ -131,8 +138,7 @@ if (isset($_POST["like"]))
 			// }
 		} catch (PDOException $e) {
 			echo "<br/>error " . $e->getMessage();
-
 		}
-}
+	}
 }
 ?>

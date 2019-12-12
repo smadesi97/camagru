@@ -1,6 +1,6 @@
 <?php
 session_start();
-include_once 'config/statup.php';
+include_once 'config/setup.php';
 
 try{
     if (isset( $_POST['commentsave'])){
@@ -21,7 +21,6 @@ try{
 }
 catch (PDOException $e)
 {
-
     echo $sqlInsert.'<br>'.$e->getMessage();
     echo "update failed";
 }

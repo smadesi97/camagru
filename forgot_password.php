@@ -1,5 +1,5 @@
 <?php
-	include "config/statup.php";
+	include "config/setup.php";
 	if (isset($_POST["forgotPassword"])){
 		$email = $_POST["email"];
 		try{
@@ -25,7 +25,6 @@
 				$str4 = str_shuffle($str4);
 				$new_pass = substr($str1, 0, 3).substr($str2, 0, 3).substr($str3, 0, 2).substr($str4, 0, 1);
 				$hash = password_hash($new_pass, PASSWORD_DEFAULT);
-
 
 				$sql = "UPDATE user SET `password`=? WHERE email = ?";
 				$stmt = $dbh->prepare($sql);

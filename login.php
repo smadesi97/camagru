@@ -38,5 +38,4 @@ include("views/includes/nav.php");
 include("views/includes/footer.php");
 ?>
 </body>
-
 </html>
