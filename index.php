@@ -50,7 +50,6 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
 
 	<div class="w3-container">
 		<h1 class="center"><br><b><?php
-									//echo htmlspecialchars($_SESSION["username"]);
 									?></b> Welcome to Camagru!</h1>
 		<?php
 
@@ -76,9 +75,9 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
 				echo "Error: Could not execute the database";
 			} else {
 				foreach ($s as $data) {
-					//echo '<div class="w3-container">';
-					echo '<div class="w3-card-4">';
-					echo '<img class="w3-border w3-padding" style="padding:10px;" src="views/includes/uploads/' . $data["source"] . '" width="300px" height="300px"/>';
+					echo '<div class="w3-container">';
+					//echo '<div class="w3-card-1">';
+					echo '<img class="" style="padding:10px;" src="views/includes/uploads/' . $data["source"] . '" width="400px" height="300px"/>';
 					echo '<form action="views/like.php" method="POST">
 						<input type="hidden" name="imageid" value="'. $data['id'] . '"/>
 						<input type="submit" name="like" value="like"/>
@@ -113,32 +112,32 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
 <script src="camera/js/likes.js"></script>
 
 </html>
-<?php
-if ($_SERVER['REQUEST_METHOD'] == "POST") {
-	if (isset($_POST["like"])) {
-		// We use the htmlEntities to convert all applicable characters to html entities
-		$imageid = htmlEntities($_POST['like']);
-		$userid = htmlEntities($_SESSION['id']);
+<!--
+// if ($_SERVER['REQUEST_METHOD'] == "POST") {
+	// if (isset($_POST["like"])) {
+	// 	// We use the htmlEntities to convert all applicable characters to html entities
+	// 	$imageid = htmlEntities($_POST['like']);
+	// 	$userid = htmlEntities($_SESSION['id']);
 
-		try {
-			require("config/database.php");
-			$sql = "INSERT INTO likes (userid, imageid) VALUES (?, ?)";
-			$statement = $dbh->prepare($sql);
-			$statement->bindParam(1, $userid);
-			$statement->bindParam(2, $imageid);
-			$statement->execute();
-			echo "success";
+	// 	try {
+	// 		require("config/database.php");
+	// 		$sql = "INSERT INTO likes (userid, imageid) VALUES (?, ?)";
+	// 		$statement = $dbh->prepare($sql);
+	// 		$statement->bindParam(1, $userid);
+	// 		$statement->bindParam(2, $imageid);
+	// 		$statement->execute();
+	// 		echo "success";
 
-			// if ($statement->rowCount()) {
-			// 	$body = "http://localhost:8081/camagru/scripts/verify_scripts.php?email=$email&code=$code";
-			// 	mail($email, "Verify your Camagru Acount", $body, "admin@camagru.co.za");
-			// 	echo "<br/>Please check your email to verify the account!";
-			// } else {
-			// 	echo "<br/>Not registered!";
-			// }
-		} catch (PDOException $e) {
-			echo "<br/>error " . $e->getMessage();
-		}
-	}
-}
-?>
+	// 		// if ($statement->rowCount()) {
+	// 		// 	$body = "http://localhost:8081/camagru/scripts/verify_scripts.php?email=$email&code=$code";
+	// 		// 	mail($email, "Verify your Camagru Acount", $body, "admin@camagru.co.za");
+	// 		// 	echo "<br/>Please check your email to verify the account!";
+	// 		// } else {
+	// 		// 	echo "<br/>Not registered!";
+	// 		// }
+	// 	} catch (PDOException $e) {
+	// 		echo "<br/>error " . $e->getMessage();
+	// 	}
+// 	}
+// }
+

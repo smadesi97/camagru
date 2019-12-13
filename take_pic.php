@@ -33,6 +33,7 @@
 			<img src="camera/img/sticker4.png" alt="emoji3" height="42" width="42" onclick="placeEmoji(4)">
 			<input type="hidden" id="stickerName" />
 			<input type="hidden" id="taken" value="false" />
+			<input type="hidden" id="from_pc" value="false" />
 			<img id="imgUpload" width="500px" height="400px" />
 		</div>
 		<canvas id="canvas"></canvas>
@@ -54,7 +55,7 @@
 			$stmt->execute();
 			if ($stmt->rowCount()) {
 				foreach ($stmt as $image) {
-					$list .= '<li class = "nav-item"><img class = "user-images" src = "views/includes/uploads/' . $image['source'] . '"/></li>';
+					$list .= '<li class = "nav-item"><img class = "user-images" src = "views/includes/uploads/' . $image['source'] . '"/><input type="button" onclick = "removeImg(\''.$image['source'].'\')" value="Delete"/></li>';
 				}
 			}
 			$list .= '</ul>';
@@ -68,4 +69,5 @@
 	?>
 	<script src="camera/js/main.js"></script>
 </body>
+
 </html>

@@ -9,14 +9,16 @@ include "../config/setup.php";
 		$userid = htmlEntities($_SESSION['id']);
 //		exit();
 
-	try {
+	try
+	{
 		$sqlUpdate = "INSERT INTO `likes` (userid, imageid) VALUES (?, ?)";
 		$stmt = $dbh->prepare($sqlUpdate);
 		$stmt->bindParam(1, intval($userid));
 		$stmt->bindParam(2, intval($imageid));
 		$stmt->execute();
-	} catch (PDOException $e) {
-
+	}
+	catch (PDOException $e)
+	{
 		echo $sqlUpdate . '<br>' . $e->getMessage();
 	}
 }

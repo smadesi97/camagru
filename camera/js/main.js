@@ -16,6 +16,7 @@ const save = document.getElementById('save');
 const hidden = document.getElementById('stickerName');
 const taken = document.getElementById('taken');
 const img_upload = document.getElementById('imgUpload');
+const img_pc = document.getElementById('from_pc');
 //Here we wanna get the media streaming
 navigator.mediaDevices.getUserMedia({video: true, audio: false})
 //We want the camera to do this
@@ -109,12 +110,15 @@ function takePicture(){
 		//set canvas props
 		 canvas.width = width;
 		 canvas.style.height = height;
-		//draw image of the video on the canvas
 
-		//is drawing image FROM the video stream to the canvas
-		contex.drawImage(video, 0, 0, width, height);
+		if (img_pc.value == "false")
+			contex.drawImage(video, 0, 0, width, height);
+		else
+		{
+			contex.drawImage(img_upload, 0, 0, width, height);
+			img_pc.value = 'false';
+		}
 		taken.value = 'true';
-		///this is drawing FROM your own picture of choice, to canvas
 
 		 //0, 0 is where we start drawing on the x & y axist.
 		//  if (img)
@@ -149,12 +153,19 @@ function displayImage(image_name)
 {
 	++count;
 	var img = document.createElement('img');
+	var delet = document.createElement('input');
 	var li = document.createElement('li');
+	delet.setAttribute('value', 'Delete');
+	delet.setAttribute('type', 'button');
 	li.setAttribute('class', 'nav-item');
+	delet.addEventListener('click', (event) =>{
+		removeImg(image_name);
+	});
 	img.id = 'pic' + count;
 	img.setAttribute('src', "views/includes/uploads/"+image_name);
 	img.setAttribute('class', "user-images");
 	li.appendChild(img);
+	li.appendChild(delet);
 	if (photos.firstChild) {
 		photos.insertBefore(li, photos.firstChild);
 	}
@@ -162,22 +173,63 @@ function displayImage(image_name)
 		photos.appendChild(li);
 	}
 }
-
+//This function removes all images displayed on the browser(not from folder nor from the database)
+function removeImages() {
+	while (photos.firstChild) {
+		photos.removeChild(photos.firstChild);
+	}
+}
+//Displays back the images on the browser, it gets the results from readImages and parse the json string object into an easily accessible array.
+function loadALL(images)
+{
+	if(images)
+	{
+		var obj = JSON.parse(images);
+		obj.forEach(image => {
+			displayImage(image);
+		});
+	}
+}
+//It removes a specific images from the folder and database as well
+function removeImg(name)
+{
+	var http = new XMLHttpRequest();
+	var param = "image=" + name + "&remove=true";
+	http.onreadystatechange = function () {
+		if (http.readyState === 4) {
+			if (http.status === 200) {
+				alert(http.responseText);
+				removeImages();
+				readImages();
+			}
+		}
+	};
+	http.open('POST', 'scripts/remove_image.php', true);
+	http.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+	http.send(param);
+}
+//It reads all images from the folder and returns a json string array of those images
+function readImages()
+{
+	var http = new XMLHttpRequest();
+	var param = "read_images=true";
+	http.onreadystatechange = function () {
+		if (http.readyState === 4) {
+			if (http.status === 200) {
+				loadALL(http.responseText);
+			}
+		}
+	};
+	http.open('POST', 'scripts/read_images.php', true);
+	http.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+	http.send(param);
+}
+//
 file_choose.addEventListener('change', (event) => {
 	var reader = new FileReader;
 	reader.addEventListener('load', (event) => {
 		img_upload.src = reader.result;
+		img_pc.value = 'true';
 	});
 	reader.readAsDataURL(file_choose.files[0]);
-	const contex = canvas.getContext('2d');
-	// if (width && height){
-	//set canvas props
-	canvas.width = width;
-	canvas.style.height = height;
-	//draw image of the video on the canvas
-
-	//is drawing image FROM the video stream to the canvas
-	contex.drawImage(img_upload, 0, 0, width, height);
-	taken.value = 'true';
 });
-
