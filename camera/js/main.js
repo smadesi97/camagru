@@ -128,26 +128,37 @@ function takePicture(){
 		//  contex.drawImage(image2, 0, 0);
 	// }
 }
+function isBlank(canvas) {
+	const blank = document.createElement('canvas');
+
+	blank.width = canvas.width;
+	blank.height = canvas.height;
+
+	return canvas.toDataURL('image/png') === blank.toDataURL('image/png');
+}
 
 save.addEventListener('click', function(event)
 {
 	// We take image name from image tag
-	var stickerName = hidden.value
-	var http = new XMLHttpRequest();
-	var param = "image_name=" + canvas.toDataURL('image/png')+"&sticker_name="+stickerName +"&taken="+taken.value;
-	http.onreadystatechange = function () {
-		if (http.readyState === 4) {
-			if (http.status === 200) {
-				if (taken.value == 'true')
-					displayImage(http.responseText);
-				taken.value = 'false';
-				hidden.value = "";
+	if (isBlank(canvas))
+	{
+		var stickerName = hidden.value
+		var http = new XMLHttpRequest();
+		var param = "image_name=" + canvas.toDataURL('image/png')+"&sticker_name="+stickerName +"&taken="+taken.value;
+		http.onreadystatechange = function () {
+			if (http.readyState === 4) {
+				if (http.status === 200) {
+					if (taken.value == 'true')
+						displayImage(http.responseText);
+					taken.value = 'false';
+					hidden.value = "";
+				}
 			}
-		}
-	};
-	http.open('POST', 'scripts/combine_pics.php', true);
-	http.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-	http.send(param);
+		};
+		http.open('POST', 'scripts/combine_pics.php', true);
+		http.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+		http.send(param);
+	}
 }, false);
 function displayImage(image_name)
 {

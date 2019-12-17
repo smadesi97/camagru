@@ -12,6 +12,9 @@ include("views/includes/nav.php");
 		<p>Please fill in your credentials to login.</p>
 		<form action="scripts/login_script.php" method="post" class="w3-container">
 			<div class="form-group">
+				<p><?php if (isset($_GET['message']))echo $_GET['message'];?></p>
+			</div>
+			<div class="form-group">
 				<label class="w3-text-blue"><b>Username</b></label>
 				<input type="text" name="username" class="w3-input w3-border" value="">
 				<br><br>
@@ -38,4 +41,5 @@ include("views/includes/nav.php");
 include("views/includes/footer.php");
 ?>
 </body>
+
 </html>

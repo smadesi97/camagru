@@ -1,8 +1,9 @@
 <?php
 include "../config/setup.php";
 	session_start();
-	// This is the function that saves the picture to a folder
-	if (isset($_POST['taken']) && $_POST['taken'] == 'true')
+// This is the function that saves the picture to a folder
+	// $name = $_SESSION['username'] . time() . '.png';
+	if ($_POST['image_name'] || $_POST['taken'] == 'true')
 	{
 		$base_string = str_replace("data:image/png;base64,", "", $_POST['image_name']);
 		$base_string = str_replace(" ", "+", $base_string);
@@ -20,7 +21,10 @@ include "../config/setup.php";
 		imagecopyresampled($base, $superpose,  0, 0, 0, 0, 100, 100, $width_small, $height_small);
 		imagepng($base, $destination);
 	}
+
+
 	combine("../views/includes/uploads/" . $name, "../views/includes/uploads/" . $name, "../camera/img/" . $_POST['sticker_name']);
+
 	if (isset($_POST['image_name'])) {
 
 		$source = $name;

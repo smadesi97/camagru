@@ -12,8 +12,8 @@
     $DB_CONN_STRING = $DB_TYPE.":"."host=".$HOST.";dbname=".$DB;
     $DB_CONN_STRING_LIGHT = $DB_TYPE.":"."host=".$HOST;
 
-    // $dbh = new PDO($DB_CONN_STRING_LIGHT, $DB_USER, $DB_PASSWORD);
+    $dbh = new PDO($DB_CONN_STRING_LIGHT, $DB_USER, $DB_PASSWORD);
     // // set the PDO error mode to exception
-    // $dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-    // $dbh->exec("USE camagrudb");
+    $dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    $dbh->exec("USE camagrudb");
 ?>

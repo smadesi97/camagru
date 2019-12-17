@@ -40,7 +40,20 @@
 					<td></td>
 					<td><input class="w3-btn w3-blue" type="submit" name="signup" value="Signup"></td>
 				</tr>
+				<tr>
+					<?php
+						if(isset($_GET['success']))
+						{
+							echo "<br/>Please check your email to verify the account!";
+						}
+						else if (isset($_GET['error']))
+						{
+							echo "<br/>".$_GET['error'];
+						}
+					?>
+				</tr>
 			</table>
+
 		</form>
 	</div>
 	<?php

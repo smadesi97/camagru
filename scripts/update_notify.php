@@ -25,7 +25,7 @@ try {
 	header("location: ../views/logout.php");
 } catch (PDOException $e) {
 
-	echo $sqlUpdate . '<br>' . $e->getMessage();
+	echo "Error".$e;
 	echo "update failed";
 }
 

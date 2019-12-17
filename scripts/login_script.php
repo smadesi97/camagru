@@ -1,47 +1,35 @@
 <?php
-include('login.php');
-// Initialize the session
-session_start();
-// Check if the user is already logged in, if yes then redirect him to welcome page
+
 if (isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true) {
 	header("location: ../index.php");
 	exit;
 }
-// Include config file
-require_once "../config/setup.php";
-// Define variables and initialize with empty values
+require_once "../config/database.php";
 $username = $password = "";
 $username_err = $password_err = "";
-// Processing form data when form is submitted
+$message = "";
+// Processing form data when form is
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-	// Check if username is empty
 	if (empty(trim($_POST["username"]))) {
-		$username_err = "Please enter username.";
+		$message = "Please enter username.";
 	} else {
 		$username = trim($_POST["username"]);
 	}
-	// Check if password is empty
 	if (empty(trim($_POST["password"]))) {
-		$password_err = "Please enter your password.";
+		$message = "Please enter your password.";
 	} else {
 		$password = $_POST['password'];
 	}
-	// Validate credentials
-	if (empty($username_err) && empty($password_err))
+	if (empty($message) && empty($message))
 	{
 		try{
-		// Prepare a select statement
 		$sql = "SELECT id, username, `password`, email FROM user WHERE username = :username";
 
 		if ($stmt = $dbh->prepare($sql)) {
-			// Bind variables to the prepared statement as parameters
 			$stmt->bindParam(":username", $param_username, PDO::PARAM_STR);
-			// Set parameters
 			$param_username = trim($_POST["username"]);
-			// Attempt to execute the prepared statement
 			if ($stmt->execute())
 			{
-				// Check if username exists, if yes then verify password
 				if ($stmt->rowCount() == 1)
 				{
 					if ($row = $stmt->fetch())
@@ -51,6 +39,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 						$email = $row["email"];
 						$hashed_password = $row["password"];
 						if(password_verify($password, $hashed_password)) {
+
 							// Password is correct, so start a new session
 							session_start();
 							// Store data in session variables
@@ -63,31 +52,35 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 						}
 						else
 						{
-							// Display an error message if password is not valid
-							$password_err = "The password you entered was not valid.";
+							$message= "The password you entered was not valid.";
 							echo "<br/>The password you entered was not valid.";
 						}
 					}
 				}
 				else
 				{
-					// Display an error message if username doesn't exist
-					$username_err = "No account found with that username.";
+					$message = "No account found with that username.";
 				}
 			}
 			else
 			{
-				echo "Oops! Something went wrong. Please try again later.";
+					$message = "Oops! Something went wrong. Please try again later.";
 			}
 		}
-		// Close statement
 		unset($stmt);
 		}
 		catch(PDOException $ex)
 		{
-			echo "Error : ".$ex->getMessage();
+			echo "Error : ".$ex;
 		}
 	}
-	// Close connection
+	if (empty($message))
+	{
+		header("location: ../index.php");
+	}
+	else
+	{
+		header("location: ../login.php?message=".$message);
+	}
 	unset($pdo);
 }

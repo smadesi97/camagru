@@ -23,7 +23,7 @@
 
 				echo "image deleted";
 			} catch (PDOException $e) {
-				echo "Error : ".$e->getMessage();
+				echo "Error : ".$e;
 			}
 	}
 ?>

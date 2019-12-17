@@ -20,8 +20,10 @@ if (isset($_POST['usernamebtn'])) {
 		header("location: ../views/logout.php");
 	} catch (PDOException $e) {
 
-		echo $sqlUpdate . '<br>' . $e->getMessage();
-		echo "update failed";
+		// echo $sqlUpdate . '<br>' . $e->getMessage();
+		echo '<script>alert("Username length should be")</script>';
+		echo '<script>window.location = "../profile.php"</script>';
+		// echo "update failed";
 	}
 		//$result = "<p style='padding: 20px; color: green;'> Comment successful </p>";
 	}
@@ -39,8 +41,10 @@ if (isset($_POST['usernamebtn'])) {
 			header("location: ../views/logout.php");
 		}catch (PDOException $e)
 		{
-			echo $sqlUpdate . '<br>' . $e->getMessage();
-			echo "update failed";
+		// echo $sqlUpdate . '<br>' . $e->getMessage();
+		// echo "update failed";
+		echo '<script>alert("Update failed try again")</script>';
+		echo '<script>window.location = "../profile.php"</script>';
 		}
 	}
 	else if (isset($_POST['passwordbtn']))
@@ -62,8 +66,10 @@ if (isset($_POST['usernamebtn'])) {
 			}
 			catch (PDOException $e)
 			{
-				echo $sqlUpdate . '<br>' . $e->getMessage();
-				echo "Update failed";
+				echo '<script>alert("Did not meet password requirements")</script>';
+				echo '<script>window.location = "../profile.php"</script>';
+			 	// echo $sqlUpdate . '<br>' . $e->getMessage();
+				// echo "Update failed";
 			}
 		}
 		else
