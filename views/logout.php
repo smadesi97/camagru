@@ -6,6 +6,7 @@ var_dump($_SESSION);
 $_SESSION = array();
 // Destroy the session.
 session_destroy();
+session_unset();
 var_dump($_SESSION);
 // Redirect to login page
 header("location: ../index.php");

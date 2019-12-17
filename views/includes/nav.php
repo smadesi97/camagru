@@ -2,7 +2,7 @@
 	<html lang="en">
 	<head>
 		<meta charset="UTF-8">
-		<title>Login</title>
+		<title>Camagru</title>
 		<link rel="stylesheet" type="text/css" href="css/w3.css">
 	</head>
 

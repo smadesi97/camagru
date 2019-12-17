@@ -31,7 +31,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 	{
 		try{
 		// Prepare a select statement
-		$sql = "SELECT id, username, `password` FROM user WHERE username = :username";
+		$sql = "SELECT id, username, `password`, email FROM user WHERE username = :username";
 
 		if ($stmt = $dbh->prepare($sql)) {
 			// Bind variables to the prepared statement as parameters

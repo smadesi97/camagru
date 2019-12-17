@@ -30,6 +30,24 @@ include("views/includes/nav.php");
 // 	<a href='views/logout.php' class='btn btn-danger'>Sign Out of Your Account</a>
 // </p>";
 // }
+$userid = htmlEntities($_SESSION['id']);
+$notify;
+$email;
+$username;
+try {
+	$sqlUpdate = "SELECT * FROM user WHERE id = ?";
+	$stmt = $dbh->prepare($sqlUpdate);
+	$stmt->bindParam(1, $userid);
+	$stmt->execute();
+	if ($stmt->rowCount()) {
+		$row = $stmt->fetch();
+		$notify = $row['notification'];
+		$email = $row['email'];
+		$username = $row['username'];
+	}
+} catch (PDOException $ex) {
+	echo "Error : " . $ex->getMessage();
+}
 ?>
 <div class="row">
 	<div class="w3-container">
@@ -38,7 +56,7 @@ include("views/includes/nav.php");
 				<form action="scripts/update_user.php" method="post" class="w3-container">
 					<div class="form-group">
 						<label class="w3-text-blue"><b>Username</b></label>
-						<input type="text" name="username" class="w3-input w3-border" value="">
+						<input type="text" name="username" class="w3-input w3-border" value="<?php echo $username; ?>">
 						<br>
 						<div class="form-group">
 							<input type="submit" class="w3-btn w3-blue" value="Update username" name="usernamebtn">
@@ -47,7 +65,7 @@ include("views/includes/nav.php");
 					</div>
 					<div class="form-group">
 						<label class="w3-text-blue"><b>Email</b></label>
-						<input type="email" name="email" class="w3-input w3-border" value="">
+						<input type="email" name="email" class="w3-input w3-border" value="<?php echo $email; ?>">
 						<br>
 						<div class="form-group">
 							<input type="submit" class="w3-btn w3-blue" value="Update email" name="emailbtn">
@@ -72,13 +90,14 @@ include("views/includes/nav.php");
 					<div class="form-group">
 						<input type="submit" class="w3-btn w3-blue" name="passwordbtn" value="Update password">
 					</div>
-				</form>
-				<!-- <form action="scripts/update_user.php" method="post" class="w3-container">
-					<br>
 					<label>
-						<input type="checkbox" checked="checked" name="notifications"> Notifications
 					</label>
-				</form> -->
+				</form>
+				<form action="scripts/update_notify.php" method="post" class="w3-container">
+					<br>
+					<input type="checkbox" <?php if($notify){echo 'checked="checked"';} ?>" name="notifications" onchange="this.form.submit()"> Notifications
+					<input type = "hidden" name = "notify" value="<?php if($notify){echo "1";}else{echo "0";} ?>"/>
+				</form>
 			</div>
 		</div>
 	</div>
@@ -91,4 +110,5 @@ include("views/includes/nav.php");
 include("views/includes/footer.php");
 ?>
 </body>
+
 </html>

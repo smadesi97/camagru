@@ -18,7 +18,6 @@ if (isset($_POST['usernamebtn'])) {
 		$stmt->bindParam(2, $userid);
 		$stmt->execute();
 		header("location: ../views/logout.php");
-		header("location: ../login.php");
 	} catch (PDOException $e) {
 
 		echo $sqlUpdate . '<br>' . $e->getMessage();
@@ -38,7 +37,6 @@ if (isset($_POST['usernamebtn'])) {
 			$store->bindParam(2, $userid);
 			$store->execute();
 			header("location: ../views/logout.php");
-			header("location: ../login.php");
 		}catch (PDOException $e)
 		{
 			echo $sqlUpdate . '<br>' . $e->getMessage();

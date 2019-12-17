@@ -78,10 +78,20 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
 					echo '<div class="w3-container">';
 					//echo '<div class="w3-card-1">';
 					echo '<img class="" style="padding:10px;" src="views/includes/uploads/' . $data["source"] . '" width="400px" height="300px"/>';
+					if ($data['likes'])
+					{
 					echo '<form action="views/like.php" method="POST">
 						<input type="hidden" name="imageid" value="'. $data['id'] . '"/>
+						<input type="submit" name="like" value="like"/><label>'.$data['likes'].'</label>
+					</form>';
+					}
+					else
+					{
+				echo '<form action="views/like.php" method="POST">
+						<input type="hidden" name="imageid" value="' . $data['id'] . '"/>
 						<input type="submit" name="like" value="like"/>
 					</form>';
+					}
 					//echo '<button  data-loggedin ="' . $_SESSION["username"] . '" data-img_id ="' . $data["id"] . '" onClick="likes(this)" type="submit" name="like" value="' . $data["userid"] . ' ">Like</button>';
 					echo '</div>';
 				}
@@ -106,7 +116,7 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
 	<!-- <a href="logout.php" class="btn btn-danger">Sign Out of Your Account</a> -->
 	<!-- </p> -->
 	<?php
-	include("views/includes/footer.php");
+	//include("views/includes/footer.php");
 	?>
 </body>
 <script src="camera/js/likes.js"></script>

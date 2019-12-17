@@ -23,7 +23,6 @@
 	<div class="top-container">
 		<video id="video">Stream not available...</video>
 		<button id="photo-button">Take photo</button>
-		<button select="clear-button">Clear</button>
 
 		<button id="save" type="button" name="submit" formaction="views/includes/upload.php">Save</button>
 		<div>

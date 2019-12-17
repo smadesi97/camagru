@@ -24,7 +24,7 @@ try {
         id int not null primary KEY AUTO_INCREMENT,
         username varchar(25) not null UNIQUE,
         `password` varchar(255) not null,
-        picture_source varchar(255) null,
+        `notification` int default 1,
         verified tinyint(1) not null DEFAULT 0,
         veri_code varchar(10000) not null,
         email varchar(100) not null
@@ -44,6 +44,7 @@ try {
         source varchar(255) not null,
         creationdate timestamp DEFAULT CURRENT_TIMESTAMP,
         userid int not null,
+        likes int default 0,
         foreign key(userid) references user(id) on delete cascade
     )";
     //Cascade on delete: this is when deleting a user with his/her pictures
