@@ -128,19 +128,20 @@ function takePicture(){
 		//  contex.drawImage(image2, 0, 0);
 	// }
 }
-function isBlank(canvas) {
+function isBlank(canvas)
+{
 	const blank = document.createElement('canvas');
 
 	blank.width = canvas.width;
 	blank.height = canvas.height;
 
-	return canvas.toDataURL('image/png') === blank.toDataURL('image/png');
+	return canvas.toDataURL() === blank.toDataURL();
 }
 
 save.addEventListener('click', function(event)
 {
 	// We take image name from image tag
-	if (isBlank(canvas))
+	if (taken.value == 'true')
 	{
 		var stickerName = hidden.value
 		var http = new XMLHttpRequest();

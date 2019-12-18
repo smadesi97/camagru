@@ -1,5 +1,6 @@
 <?php
 include 'config/database.php';
+$dbh->exec("USE camagrudb");
 session_start();
 //create a random string value to append to teh name of the file to avoid failure due to duplicates
 

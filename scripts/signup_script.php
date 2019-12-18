@@ -1,5 +1,11 @@
 <?php
-	include_once "../config/setup.php";
+include "../config/database.php";
+    // $dbh = new PDO($DB_CONN_STRING_LIGHT, $DB_USER, $DB_PASSWORD);
+    // set the PDO error mode to exception
+    // $dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    $dbh->exec("USE camagrudb");
+var_dump($_POST);
+// include "../config/setup.php";
 	if (isset($_POST["signup"])){
 		$username = $_POST["username"];
 		$email = $_POST["email"];

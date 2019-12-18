@@ -1,8 +1,11 @@
 <?php
-include "../config/setup.php";
-// var_dump($_POST);
+include "../config/database.php";
+$dbh->exec("USE camagrudb");
+//
 session_start();
-if (isset($_POST['imageid'])) {
+// var_dump($_SESSION);
+// exit();
+if (isset($_POST['imageid']) && !empty($_SESSION)) {
 
 	$imageid = $_POST['imageid'];
 	$userid = htmlEntities($_SESSION['id']);

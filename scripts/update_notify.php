@@ -3,7 +3,8 @@ session_start();
 //print_r($_POST);
 //print_r($_SESSION);
 
-include_once "../config/setup.php";
+include_once "../config/database.php";
+$dbh->exec("USE camagrudb");
 //get users ID for SQL WHERE clause
 
 $notify_value =  $_POST['notify'];

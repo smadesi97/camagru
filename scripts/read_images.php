@@ -1,6 +1,7 @@
 <?php
     session_start();
-    include '../config/setup.php';
+    include '../config/database.php';
+    $dbh->exec("USE camagrudb");
     if (!isset($_SESSION['id']))
     {
        header('location: ../login.php');

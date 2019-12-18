@@ -1,7 +1,8 @@
 <?php
 // Initialize the session
 session_start();
-include_once "config/setup.php";
+include_once "config/database.php";
+$dbh->exec("USE camagrudb");
 
 // Check if the user is logged in, if not then redirect him to login page
 if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
@@ -52,8 +53,13 @@ try {
 <div class="row">
 	<div class="w3-container">
 		<div class="w3-display-middle">
+			<?php
+			if (isset($_GET['error'])) {
+				echo "<br/>" . $_GET['error'];
+			}
+			?>
 			<div class="col">
-				<form action="scripts/update_user.php" method="post" class="w3-container">
+				<form action="scripts/update_user.php" method="post">
 					<div class="form-group">
 						<label class="w3-text-blue"><b>Username</b></label>
 						<input type="text" name="username" class="w3-input w3-border" value="<?php echo $username; ?>">
@@ -74,7 +80,7 @@ try {
 					</div>
 
 				</form>
-				<form action="scripts/update_user.php" method="post" class="w3-container">
+				<form action="scripts/update_user.php" method="post">
 					<div class="form-group ">
 						<label class="w3-text-blue"><b>New Password</b></label>
 						<input type="password" name="new_password" class="w3-input w3-border" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters" required>
@@ -95,19 +101,21 @@ try {
 				</form>
 				<form action="scripts/update_notify.php" method="post" class="w3-container">
 					<br>
-					<input type="checkbox" <?php if($notify){echo 'checked="checked"';} ?>" name="notifications" onchange="this.form.submit()"> Notifications
-					<input type = "hidden" name = "notify" value="<?php if($notify){echo "1";}else{echo "0";} ?>"/>
+					<input type="checkbox" <?php if ($notify) {
+																									echo 'checked="checked"';
+																								} ?>" name="notifications" onchange="this.form.submit()"> Notifications
+					<input type="hidden" name="notify" value="<?php if ($notify) {
+																									echo "1";
+																								} else {
+																									echo "0";
+																								} ?>" />
 				</form>
 			</div>
 		</div>
 	</div>
 </div>
-<!-- <p> -->
-<!-- <a href="reset_pswrd.php" class="btn btn-warning">Reset Your Password</a> -->
-<!-- <a href="logout.php" class="btn btn-danger">Sign Out of Your Account</a> -->
-<!-- </p> -->
 <?php
-include("views/includes/footer.php");
+																								include("views/includes/footer.php");
 ?>
 </body>
 

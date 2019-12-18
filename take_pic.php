@@ -43,7 +43,9 @@
 	</div>
 	<div class="right-container">
 		<?php
-		include("config/setup.php");
+		include "config/database.php";
+		// include("config/setup.php");
+		$dbh->exec("USE camagrudb");
 		$list = '<ul id="photos">';
 		$userid = $_SESSION['id'];
 

@@ -4,7 +4,8 @@ session_start();
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
-include_once "config/setup.php";
+include "config/database.php";
+$dbh->exec("USE camagrudb");
 
 // Check if the user is logged in, if not then redirect him to login page
 if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
@@ -116,10 +117,9 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
 	<!-- <a href="logout.php" class="btn btn-danger">Sign Out of Your Account</a> -->
 	<!-- </p> -->
 	<?php
-	//include("views/includes/footer.php");
+	include("views/includes/footer.php");
 	?>
 </body>
-<script src="camera/js/likes.js"></script>
 
 </html>
 <!--

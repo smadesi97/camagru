@@ -1,5 +1,6 @@
 <?php
-include "config/setup.php";
+include "config/database.php";
+$dbh->exec("USE camagrudb");
 if (isset($_POST["forgotPassword"])) {
 	$email = $_POST["email"];
 	try {

@@ -1,5 +1,6 @@
 <?php
-		include("../config/setup.php");
+		include("../config/database.php");
+		$dbh->exec("USE camagrudb");
 		session_start();
 		// We wanna delete a picture from the database and folder
 		if (isset($_POST['remove']))

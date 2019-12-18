@@ -1,5 +1,6 @@
 <?php
-	include "../config/setup.php";
+	include "../config/database.php";
+	$dbh->exec("USE camagrudb");
 	if (isset($_GET['email']) && isset($_GET['code'])){
 		$email = $_GET['email'];
 		$code = $_GET['code'];

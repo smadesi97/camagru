@@ -1,4 +1,5 @@
 <?php
+//  include "setup.php";
 //database details declaration
     $dbh;
     $DB = "camagrudb";
@@ -15,5 +16,5 @@
     $dbh = new PDO($DB_CONN_STRING_LIGHT, $DB_USER, $DB_PASSWORD);
     // // set the PDO error mode to exception
     $dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-    $dbh->exec("USE camagrudb");
+    // $dbh->exec("USE camagrudb");
 ?>
