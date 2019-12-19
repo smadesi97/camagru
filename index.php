@@ -1,4 +1,5 @@
 <?php
+// include 'config/setup. php';
 // Initialize the session
 session_start();
 ini_set('display_errors', 1);
@@ -53,8 +54,7 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
 		<h1 class="center"><br><b><?php
 									?></b> Welcome to Camagru!</h1>
 		<?php
-
-
+			$page = 1;
 		try {
 			$limit = 5;
 			$sql1 = "SELECT * FROM `image`";
@@ -62,10 +62,16 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
 			$pagination->execute();
 			$total_results = $pagination->rowCount();
 			$total_pages = ceil($total_results / $limit);
+
+			// $currentpage = $_GET['page'];
+
 			if (!isset($_GET['page'])) {
 				$page = 1;
-			} else {
+			} else if (is_numeric($_GET['page'])){
 				$page = $_GET['page'];
+			}
+			else{
+				$page = 1;
 			}
 			$starting_limit = ($page - 1) * $limit;
 
